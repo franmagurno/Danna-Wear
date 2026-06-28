@@ -60,9 +60,15 @@ export default function Cart({ items, products, currentBoxerPrice, nextBoxerTier
             <span className="text-xs text-gray-500 uppercase tracking-wide font-medium">Total</span>
             <span className="text-lg font-bold text-indigo-600">${totalPrice.toLocaleString('es-AR')}</span>
           </div>
+          {boxerUnitsInCart > 0 && boxerUnitsInCart < 12 && (
+            <p className="text-amber-600 text-xs font-medium mb-2 text-center">
+              Mínimo 12 boxers por pedido ({12 - boxerUnitsInCart} más para continuar)
+            </p>
+          )}
           <button
             onClick={onCheckout}
-            className="w-full bg-indigo-600 text-white py-2.5 rounded-xl font-semibold text-sm hover:bg-indigo-700 transition-colors"
+            disabled={boxerUnitsInCart > 0 && boxerUnitsInCart < 12}
+            className="w-full bg-indigo-600 text-white py-2.5 rounded-xl font-semibold text-sm hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Confirmar pedido →
           </button>

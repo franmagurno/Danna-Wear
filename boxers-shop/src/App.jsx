@@ -70,6 +70,8 @@ export default function App() {
         }, 0)
     : 0;
 
+  const WHATSAPP_NUMBER = '5491126033692';
+
   async function handleSubmitOrder(customerName) {
     const orderCode = generateOrderCode();
     const orderData = {
@@ -95,6 +97,11 @@ export default function App() {
     setLastOrder({ code: orderCode, customer: customerName });
     setSelections({});
     setShowOrderForm(false);
+
+    const msg =
+      `Hola! Acabo de generar el pedido de *${totalUnits} boxers* a nombre de *${customerName}*.`;
+
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
   return (
